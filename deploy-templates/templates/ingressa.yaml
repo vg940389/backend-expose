@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1 # API version for the Ingress resource.
+kind: Ingress                    # Defines a Kubernetes Ingress resource.
+metadata:
+  name: api
+  namespace: 74cudwfj-expose-dev
+spec:
+  # Rules to determine how HTTP/S traffic is routed to services.
+  rules:
+    # The host/domain name for accessing the application.
+    - host: backend-expose-74cudwfj-expose-dev.development.krci-dev.cloudmentor.academy
+    # Defines HTTP routing rules.
+      http:
+        paths:
+          - path: /
+            # Specifies the type of path matching. "Prefix" means all paths starting with `/`.
+            pathType: Prefix
+            backend:
+              service:
+                name: api        # The name of the service to route traffic to.
+                port:
+                  number: 80     # The service's port to forward traffic to.
